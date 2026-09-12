@@ -1,0 +1,40 @@
+# Build outputs
+build/
+bin/
+obj/
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.so
+*.dylib
+*.dll
+
+# Nome do executável final do projeto (ajustar para o nome escolhido pelo grupo)
+programa
+
+# Arquivo de teste gerado pelo próprio programa (não commitar resultado de execução)
+output_image.png
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/c_cpp_properties.json
+
+# macOS
+.DS_Store
+
+# WSL/Linux
+*~
+.cache/
+
+# Ferramentas de análise de memória
+*.dSYM/
+vgcore.*
+core
+
+# Bibliotecas baixadas localmente (se não forem versionadas, ex. via vcpkg local)
+vcpkg_installed/
