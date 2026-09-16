@@ -19,7 +19,8 @@ bool grayscale_is_image_grayscale(const MyImage *image);
 //
 // Modifica image->surface diretamente e chama image_refresh_texture() ao
 // final, ja que a texture nao reflete mudancas na surface automaticamente.
+// Retorna false em falha; a inicializacao deve ser interrompida nesse caso.
 //------------------------------------------------------------------------------
-void grayscale_convert(SDL_Renderer *renderer, MyImage *image);
+bool grayscale_convert(SDL_Renderer *renderer, MyImage *image);
 
 #endif // GRAYSCALE_H
