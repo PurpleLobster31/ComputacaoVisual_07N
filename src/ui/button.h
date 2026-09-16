@@ -3,6 +3,7 @@
 
 #include <stdbool.h>
 #include <SDL3/SDL.h>
+#include "text_render.h"
 
 //------------------------------------------------------------------------------
 // Estados do botão. As cores associadas a cada estado (item 5/6 do escopo:
@@ -21,6 +22,7 @@ struct Button
 {
   SDL_FRect rect;
   char label[64];
+  TextLabel text;
   ButtonState state;
 };
 
@@ -38,11 +40,10 @@ void button_handle_event(Button *button, const SDL_Event *event, SDL_WindowID wi
 
 //------------------------------------------------------------------------------
 // Desenha o botão com SDL_RenderFillRect/SDL_RenderRect, usando a cor
-// correspondente ao estado atual. O texto do rótulo (button->label) ainda
-// depende do módulo de renderização de texto (item 8, SDL_ttf) — por ora,
-// apenas o retângulo é desenhado.
+// correspondente ao estado atual e texto centralizado, preparado em cache.
 //------------------------------------------------------------------------------
-void button_render(SDL_Renderer *renderer, const Button *button);
+bool button_render(SDL_Renderer *renderer, Button *button, TTF_Font *font);
+void button_destroy(Button *button);
 
 //------------------------------------------------------------------------------
 // Troca o texto do rótulo do botão (ex.: "Equalizar" <-> "Ver original").
