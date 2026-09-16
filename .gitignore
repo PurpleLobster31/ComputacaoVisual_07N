@@ -26,6 +26,10 @@ output_image.png
 
 # macOS
 .DS_Store
+__MACOSX/
+._*
+# ZIP original recebido; fontes extraidos sao versionados individualmente.
+/ComputacaoVisual_07N-main.zip
 
 # WSL/Linux
 *~
