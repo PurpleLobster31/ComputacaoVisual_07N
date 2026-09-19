@@ -79,22 +79,13 @@ void image_destroy(MyImage *image)
 }
 
 //------------------------------------------------------------------------------
-void image_refresh_texture(SDL_Renderer *renderer, MyImage *image)
+bool image_refresh_texture(SDL_Renderer *renderer, MyImage *image)
 {
   if (!renderer || !image || !image->surface)
-  {
-    SDL_Log("\t*** Erro: parametro invalido em image_refresh_texture().");
-    return;
-  }
-
-  if (image->texture)
-  {
-    SDL_DestroyTexture(image->texture);
-  }
-
-  image->texture = SDL_CreateTextureFromSurface(renderer, image->surface);
-  if (!image->texture)
-  {
-    SDL_Log("\t*** Erro ao recriar a texture: %s", SDL_GetError());
-  }
+    return SDL_SetError("Parametros invalidos para recriar textura.");
+  SDL_Texture *next = SDL_CreateTextureFromSurface(renderer, image->surface);
+  if (!next) return false;
+  SDL_DestroyTexture(image->texture);
+  image->texture = next;
+  return true;
 }

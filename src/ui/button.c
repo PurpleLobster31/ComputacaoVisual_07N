@@ -9,6 +9,7 @@ void button_init(Button *button, float x, float y, float w, float h, const char 
     return;
   }
 
+  *button = (Button){0};
   button->rect.x = x;
   button->rect.y = y;
   button->rect.w = w;
@@ -25,6 +26,7 @@ void button_set_label(Button *button, const char *label)
     return;
   }
 
+  text_label_destroy(&button->text);
   if (label)
   {
     SDL_strlcpy(button->label, label, sizeof(button->label));
@@ -112,11 +114,11 @@ void button_handle_event(Button *button, const SDL_Event *event, SDL_WindowID wi
 }
 
 //------------------------------------------------------------------------------
-void button_render(SDL_Renderer *renderer, const Button *button)
+bool button_render(SDL_Renderer *renderer, Button *button, TTF_Font *font)
 {
-  if (!renderer || !button)
+  if (!renderer || !button || !font)
   {
-    return;
+    return SDL_SetError("Botao invalido para renderizacao.");
   }
 
   // Cores por estado (item 5/6 do escopo): azul neutro, azul claro hover,
@@ -140,6 +142,15 @@ void button_render(SDL_Renderer *renderer, const Button *button)
   SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
   SDL_RenderRect(renderer, &button->rect);
 
-  // TODO (item 8, requer SDL_ttf): renderizar button->label centralizado
-  // dentro do retangulo, quando o modulo de texto estiver pronto.
+  if (!button->text.texture &&
+      !text_label_set(&button->text, renderer, font, button->label,
+                      (SDL_Color){255, 255, 255, 255})) return false;
+  return text_label_draw(renderer, &button->text,
+                         button->rect.x + (button->rect.w - button->text.width) / 2,
+                         button->rect.y + (button->rect.h - button->text.height) / 2);
+}
+
+void button_destroy(Button *button)
+{
+  if (button) text_label_destroy(&button->text);
 }

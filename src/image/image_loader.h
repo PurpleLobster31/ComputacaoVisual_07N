@@ -40,6 +40,6 @@ void image_destroy(MyImage *image);
 // diretamente (ex.: conversão para escala de cinza, equalização de
 // histograma), já que a texture não reflete mudanças na surface automaticamente.
 //------------------------------------------------------------------------------
-void image_refresh_texture(SDL_Renderer *renderer, MyImage *image);
+bool image_refresh_texture(SDL_Renderer *renderer, MyImage *image);
 
 #endif // IMAGE_LOADER_H
