@@ -9,7 +9,7 @@ Computação Visual - Prof. André Kishimoto
 | Thais Ferreira Canguçu | 10403283 |
 
 ## O que o programa faz
-O programa recebe uma imagem pela linha de comando e abre uma interface para processamento em escala de cinza: analisa o histograma, equaliza as intensidades, alterna a resolução de exibição e salva o resultado em PNG. Foi desenvolvido em C99, com SDL3, a partir do exemplo `04-invert_image` da disciplina (créditos nos arquivos-fonte), e testado em **macOS, Windows 11 e Linux (Ubuntu)**. A validação nativa no Windows 11 (GCC 15.1.0) passou em 16/09/2026; detalhes em [docs/VALIDACAO_WINDOWS.](docs/VALIDACAO_WINDOWS.[](docs/VALIDACAO_MULTIPLATAFORMA.
+O programa recebe uma imagem pela linha de comando e abre uma interface para processamento em escala de cinza: analisa o histograma, equaliza as intensidades, alterna a resolução de exibição e salva o resultado em PNG. Foi desenvolvido em C99, com SDL3, a partir do exemplo `04-invert_image` da disciplina (créditos nos arquivos-fonte), e testado em **macOS, Windows 11 e Linux (Ubuntu)**. 
 Ao abrir uma imagem, o programa informa no terminal se ela é colorida ou já está em escala de cinza (convertendo-a quando necessário) e exibe duas janelas: a principal, com a imagem, e uma secundária, com o histograma, as estatísticas (total de pixels, média, desvio padrão e classificações de brilho/contraste) e dois botões.
 
 - **Equalizar / Ver original**: aplica a equalização por distribuição acumulada (CDF) e permite voltar à imagem original em cinza a qualquer momento, sem precisar recarregar o arquivo.
